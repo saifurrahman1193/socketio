@@ -8,7 +8,9 @@
         "dev": "npx nodemon index.js -w server",
         "start": "nodemon index.js"
     },
-    "dependencies": {},
+    "dependencies": {
+        "express": "^4.18.1"
+    },
     "author": "Md. Saifur Rahman",
     "devDependencies": {
         "nodemon": "^2.0.14"
