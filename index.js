@@ -5,7 +5,7 @@ const server = http.createServer(app);
 
 app.get('/', (req, res) => {
     // res.send('<h1>Hello world</h1>');
-    res.sendFile('./app/views/index.html');
+    res.sendFile(__dirname +'/app/views/index.html');
 });
 
 server.listen(3000, () => {
