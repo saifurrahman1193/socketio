@@ -26,10 +26,7 @@ app.use(forms.array());
 app.use(express.static('public'));
 
 
-app.get('/', (req, res) => {
-    // res.send('<h1>Hello world</h1>');
-    res.sendFile(__dirname +'/resources/views/index.html');
-});
+require("./routes/routes.js")(app);
 
 io.on('connection', (socket) => {
   socket.on('chat message', (msg) => {

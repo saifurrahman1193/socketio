@@ -1,5 +1,5 @@
 module.exports = app => {
-    const auth = require("../app/http/controllers/home.controller.js");
+    const auth = require("../app/http/controllers/home.controller");
 
     prefix = ""
 
