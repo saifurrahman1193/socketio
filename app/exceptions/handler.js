@@ -1,7 +1,7 @@
 module.exports = (app, path, loghelper) => {
 
     // catch 404 and forward to error handler
-    app.use(function (req, res, next) {
+    app.use( async(req, res, next) => {
 
         let options = {
             root: path.join(__dirname, '../../resources/views/errors')
@@ -12,6 +12,7 @@ module.exports = (app, path, loghelper) => {
         // respond with html page
         if (req.accepts('html')) {
             res.sendFile('404.html', options);
+            await loghelper.log('404', 'alert')
             return;
         }
 
@@ -35,7 +36,7 @@ module.exports = (app, path, loghelper) => {
         err.statusCode = err.statusCode || 500;
         err.message = err.message || "Internal Server Error";
 
-        await loghelper.log(error?.message, 'error')
+        await loghelper.log(err?.message, 'error')
 
         res.status(err.statusCode).json({
             message: err.message,
