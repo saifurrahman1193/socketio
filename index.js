@@ -28,7 +28,7 @@ app.use(express.static('public'));
 
 app.get('/', (req, res) => {
     // res.send('<h1>Hello world</h1>');
-    res.sendFile(__dirname +'/app/views/index.html');
+    res.sendFile(__dirname +'/resources/views/index.html');
 });
 
 io.on('connection', (socket) => {
