@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const moment = require('moment');
 
 const log = exports.log = async (message, errorType='Error') => {
-    var LogFile = `./strage/logs/${moment().format('yy-MM-DD')}.log`
+    var LogFile = `./storage/logs/${moment().format('yy-MM-DD')}.log`
     let ensureFileSync = fs.ensureFileSync(LogFile)
     console.log('=========ensureFileSync==========', ensureFileSync);
     
