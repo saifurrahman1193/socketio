@@ -10,6 +10,12 @@ const cors = require("cors");
 var multer = require('multer');
 var forms = multer();
 var path = require('path');
+const {engine} = require('express-handlebars');
+
+
+
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
 
 // =========cors==========
 app.use(cors());
