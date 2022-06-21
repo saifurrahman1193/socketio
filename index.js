@@ -11,6 +11,7 @@ var multer = require('multer');
 var forms = multer();
 var path = require('path');
 const {engine} = require('express-handlebars');
+const loghelper = require('./app/helpers/loghelper.js');
 
 
 
@@ -48,7 +49,7 @@ app.use(express.static('public', options))
 
 
 require("./routes/routes.js")(app);
-require("./app/exceptions/handler")(app, path);
+require("./app/exceptions/handler")(app, path, loghelper);
 require("./app/jobs/jobs.js")(app);
 
 

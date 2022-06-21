@@ -1,4 +1,4 @@
-module.exports = (app, path) => {
+module.exports = (app, path, loghelper) => {
 
     // catch 404 and forward to error handler
     app.use(function(req, res, next){
