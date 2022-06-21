@@ -48,20 +48,10 @@ app.use(express.static('public', options))
 
 
 require("./routes/routes.js")(app);
+require("./app/exceptions/handler")(app, path);
 require("./app/jobs/jobs.js")(app);
 
-// Handling Errors
-app.use( async(err, req, res, next) => {
-  // console.log(err);
-  err.statusCode = err.statusCode || 500;
-  err.message = err.message || "Internal Server Error";
 
-  await loghelper.log(error?.message, 'error')
-
-  res.status(err.statusCode).json({
-    message: err.message,
-  });
-});
 
 io.on('connection', (socket) => {
   socket.on('chat message', (msg) => {
@@ -72,4 +62,8 @@ io.on('connection', (socket) => {
 server.listen(process.env.APP_PORT, () => {
   console.log(`listening on *:${process.env.APP_PORT}`);
 });
+
+
+
+
 
