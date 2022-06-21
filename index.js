@@ -10,10 +10,10 @@ const cors = require("cors");
 var multer = require('multer');
 var forms = multer();
 
-
 // =========cors==========
 app.use(cors());
 // =========cors==========
+
 
 // parse requests of content-type: application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,7 +23,21 @@ app.use(bodyParser.json());
 
 // for parsing multipart/form-data
 app.use(forms.array()); 
-app.use(express.static('public'));
+
+var options = {
+  dotfiles: 'ignore',
+  etag: false,
+  extensions: ['htm', 'html'],
+  index: false,
+  maxAge: '1d',
+  redirect: false,
+  setHeaders: function (res, path, stat) {
+    res.set('x-timestamp', Date.now())
+  }
+}
+
+app.use(express.static('public', options))
+
 
 
 require("./routes/routes.js")(app);
