@@ -3,6 +3,10 @@ const express = require('express');
 const http = require('http');
 const app = express();
 const server = http.createServer(app);
+const {
+  Server
+} = require("socket.io");
+const io = new Server(server);
 const bodyParser = require("body-parser");
 const cors = require("cors");
 var multer = require('multer');
@@ -51,14 +55,11 @@ app.use(express.static('public', options))
 require('./bootstrap/services.js')(app);
 
 
-const {
-  Server
-} = require("socket.io");
-const io = new Server(server);
+
 
 io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);
+  socket.on('messageFromServer', (msg) => {
+    io.emit('messageFromServer', msg);
   });
 });
 
