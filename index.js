@@ -58,8 +58,8 @@ require('./bootstrap/services.js')(app);
 
 
 io.on('connection', (socket) => {
-  socket.on('messageFromServer', (msg) => {
-    io.emit('messageFromServer', msg);
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg);
   });
 });
 
