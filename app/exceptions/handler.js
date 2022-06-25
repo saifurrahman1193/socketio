@@ -1,4 +1,7 @@
-module.exports = (app, path, loghelper) => {
+const loghelper = require('../../app/helpers/loghelper.js');
+var path = require('path');
+
+module.exports = (app, path) => {
 
     // catch 404 and forward to error handler
     app.use( async(req, res, next) => {
