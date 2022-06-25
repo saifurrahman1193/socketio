@@ -6,3 +6,9 @@ exports.index = (req, res) => {
     res.sendFile('index.html', controller.options);
 };
 
+exports.chat = (req, res) => {
+    let formData = {...req.query, ...req.body}
+
+    res.sendFile('chat.html', controller.options);
+};
+

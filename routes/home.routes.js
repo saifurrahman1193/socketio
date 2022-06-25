@@ -4,5 +4,6 @@ module.exports = app => {
     prefix = ""
 
     app.get(prefix + "/", home.index);
+    app.get(prefix + "/chat", home.chat);
 
 };
