@@ -8,7 +8,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 var multer = require('multer');
 var forms = multer();
-const {engine} = require('express-handlebars');
+const {
+  engine
+} = require('express-handlebars');
 
 
 
@@ -21,13 +23,15 @@ app.use(cors());
 
 
 // parse requests of content-type: application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
 
 // for parsing multipart/form-data
-app.use(forms.array()); 
+app.use(forms.array());
 
 var options = {
   dotfiles: 'ignore',
@@ -48,7 +52,9 @@ app.use(express.static('public', options))
 require('./bootstrap/services.js')(app);
 
 
-const { Server } = require("socket.io");
+const {
+  Server
+} = require("socket.io");
 const io = new Server(server);
 
 io.on('connection', (socket) => {
@@ -60,8 +66,3 @@ io.on('connection', (socket) => {
 server.listen(process.env.APP_PORT, () => {
   console.log(`listening on *:${process.env.APP_PORT}`);
 });
-
-
-
-
-
