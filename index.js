@@ -58,8 +58,10 @@ require('./bootstrap/services.js')(app);
 
 
 io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);
+  socket.emit('messageFromServer', {data: "Welcome to socket.io server!"});
+
+  socket.on('dataToServer', (dataFromClient) => {
+    console.log('dataFromClient : ', dataFromClient);
   });
 });
 
