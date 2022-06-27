@@ -16,7 +16,6 @@ const {
 } = require('express-handlebars');
 
 
-
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 
@@ -50,19 +49,15 @@ var options = {
 
 app.use(express.static('public', options))
 
-
-
 require('./bootstrap/services.js')(app);
 
 
-
-
 io.on('connection', (socket) => {
-  socket.emit('messageFromServer', {data: "Welcome to socket.io server!"});
+    console.log('New user connected');
 
-  socket.on('dataToServer', (dataFromClient) => {
-    console.log('dataFromClient : ', dataFromClient);
-  });
+    socket.on('disconnect', () => {
+      console.log('user disconnected');
+    })
 });
 
 expressServer.listen(process.env.APP_PORT, () => {

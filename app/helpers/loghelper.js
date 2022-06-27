@@ -4,7 +4,7 @@ const moment = require('moment');
 const log = exports.log = async (message, errorType='Error') => {
     var LogFile = `./storage/logs/${moment().format('yy-MM-DD')}.log`
     let ensureFileSync = fs.ensureFileSync(LogFile)
-    console.log('=========ensureFileSync==========', ensureFileSync);
+    // console.log('=========ensureFileSync==========', ensureFileSync);
     
     var logDate = moment().format('yy-MM-DD HH:mm:ss')
     fs.appendFile(LogFile, `[${logDate}] ${process?.env?.APP_ENV||'local'}.${errorType.toUpperCase()} ${message} \r\n`, function (err) {
