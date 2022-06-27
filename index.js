@@ -55,9 +55,9 @@ require('./bootstrap/services.js')(app);
 io.on('connection', (socket) => {
     console.log('New user connected');
 
-    socket.on('disconnect', () => {
-      console.log('user disconnected');
-    })
+    setTimeout(() => {
+      socket.send('Welcome to socket.io (server-->client)');
+    }, 5000);
 });
 
 expressServer.listen(process.env.APP_PORT, () => {
