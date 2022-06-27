@@ -15,6 +15,7 @@ const {
   engine
 } = require('express-handlebars');
 
+const moment = require('moment');
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
@@ -55,9 +56,9 @@ require('./bootstrap/services.js')(app);
 io.on('connection', (socket) => {
     console.log('New user connected');
 
-    setTimeout(() => {
-      socket.send('Welcome to socket.io (server-->client)');
-    }, 5000);
+    setInterval(() => {
+      socket.send(moment().format('MMMM Do YYYY, h:mm:ss a'));
+    }, 10);
 });
 
 expressServer.listen(process.env.APP_PORT, () => {
