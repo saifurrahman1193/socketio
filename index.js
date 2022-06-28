@@ -56,9 +56,9 @@ require('./bootstrap/services.js')(app);
 io.on('connection', (socket) => {
     console.log('New user connected');
 
-    setInterval(() => {
-      socket.emit('timeEvent', moment().format('MMMM Do YYYY, h:mm:ss a'));
-    }, 10);
+      socket.on('message', (msg) => {
+        console.log(msg);
+      });
 });
 
 expressServer.listen(process.env.APP_PORT, () => {
