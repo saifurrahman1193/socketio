@@ -57,7 +57,7 @@ io.on('connection', (socket) => {
     console.log('New user connected');
 
     setInterval(() => {
-      socket.send(moment().format('MMMM Do YYYY, h:mm:ss a'));
+      socket.emit('timeEvent', moment().format('MMMM Do YYYY, h:mm:ss a'));
     }, 10);
 });
 

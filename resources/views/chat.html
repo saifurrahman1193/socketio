@@ -13,7 +13,7 @@
   <script>
     const socket = io();
     
-    socket.on('message', (msg) => {
+    socket.on('timeEvent', (msg) => {
       document.querySelector('#time').innerHTML = msg
     })
 
