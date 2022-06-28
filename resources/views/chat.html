@@ -28,7 +28,7 @@
     
     const send = () => {
       let message = document.querySelector("#message")
-      socket.send(message?.value)
+      socket.emit("myMessage", message?.value)
 
     }
 

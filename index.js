@@ -56,7 +56,7 @@ require('./bootstrap/services.js')(app);
 io.on('connection', (socket) => {
     console.log('New user connected');
 
-      socket.on('message', (msg) => {
+      socket.on('myMessage', (msg) => {
         console.log(msg);
       });
 });
