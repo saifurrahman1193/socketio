@@ -1,4 +1,11 @@
-module.exports = (app, expressServer, io) => {
+module.exports = (app, expressServer) => {
+
+    const {
+        Server
+    } = require("socket.io");
+    const io = new Server(expressServer);
+
+
     let buyNsp = io.of("/buy")
 
     buyNsp.on('connection', (socket) => {
