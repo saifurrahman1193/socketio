@@ -8,12 +8,7 @@
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <div class="col-md-6">
-            <input type="text" name="message" id="message" class="form-control" placeholder="message" />
-          </div>
-          <div class="col-md-6">
-            <button class="btn btn-primary" onclick="send()">Send</button>
-          </div>
+          <label  id="label" class="control-label"></label>
         </div>
       </div>
     </div>
@@ -26,11 +21,9 @@
   <script>
     const socket = io();
     
-    const send = () => {
-      let message = document.querySelector("#message")
-      socket.emit("myMessage", message?.value)
-
-    }
+    socket.on('firstBroadcast', (data) => {
+      document.querySelector("#label").innerHTML = data
+    })
 
   </script>
 </body>

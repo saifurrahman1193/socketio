@@ -56,9 +56,7 @@ require('./bootstrap/services.js')(app);
 io.on('connection', (socket) => {
     console.log('New user connected');
 
-      socket.on('myMessage', (msg) => {
-        console.log(msg);
-      });
+      io.sockets.emit("firstBroadcast", "Broadcasting.. Hello everyone!")
 });
 
 expressServer.listen(process.env.APP_PORT, () => {
