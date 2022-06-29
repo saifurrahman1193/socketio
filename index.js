@@ -3,10 +3,7 @@ const express = require('express');
 const http = require('http');
 const app = express();
 const expressServer = http.createServer(app);
-const {
-  Server
-} = require("socket.io");
-const io = new Server(expressServer);
+
 const bodyParser = require("body-parser");
 const cors = require("cors");
 var multer = require('multer');
@@ -50,14 +47,9 @@ var options = {
 
 app.use(express.static('public', options))
 
-require('./bootstrap/services.js')(app);
+require('./bootstrap/services.js')(app, expressServer);
 
 
-io.on('connection', (socket) => {
-    console.log('New user connected');
-
-      io.sockets.emit("firstBroadcast", "Broadcasting.. Hello everyone!")
-});
 
 expressServer.listen(process.env.APP_PORT, () => {
   console.log(`listening on *:${process.env.APP_PORT}`);
