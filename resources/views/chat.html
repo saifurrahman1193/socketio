@@ -19,9 +19,9 @@
   </script>
   <script src="/socket.io/socket.io.js"></script>
   <script>
-    const socket = io();
+    const socket = io("/buy");
     
-    socket.on('firstBroadcast', (data) => {
+    socket.on('buyNspMessage', (data) => {
       document.querySelector("#label").innerHTML = data
     })
 

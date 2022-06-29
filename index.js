@@ -12,7 +12,6 @@ const {
   engine
 } = require('express-handlebars');
 
-const moment = require('moment');
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
