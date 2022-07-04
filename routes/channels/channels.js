@@ -10,7 +10,7 @@ module.exports = (app, expressServer) => {
     io.on('connection', (socket) => {
         console.log('A user is connected');
         socket.on('chat', (msg) =>{
-            socket.emit('chat_message',msg)
+            socket.emit('chat_message', msg)
         })
     })
 
