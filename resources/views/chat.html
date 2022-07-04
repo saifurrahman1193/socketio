@@ -1,30 +1,49 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
+
 <body>
   <div class="container mt-5">
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <label  id="label" class="control-label"></label>
+          <ul class="list" id="message-list">
+
+          </ul>
+          <input id="message" class="control-label" />
+          <button class="btn btn-primary mt-2" onclick="send()">Send</button>
         </div>
       </div>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-  </script>
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
   <script src="/socket.io/socket.io.js"></script>
   <script>
-    const socket = io("/buy");
-    
-    socket.on('buyNspMessage', (data) => {
-      document.querySelector("#label").innerHTML = data
+    const socket = io();
+
+    const send = () => {
+      let message = document.querySelector("#message").value
+      if (message) {
+        socket.emit('chat', message)
+        document.querySelector("#message").value = ''
+      }
+    }
+
+    socket.on('chat_message', (data) => {
+
+      let message_list = document.querySelector("#message-list")
+      let list_item = document.createElement('li')
+      list_item.textContent = data
+      message_list.append(list_item)
     })
 
   </script>
 </body>
+
 </html>
