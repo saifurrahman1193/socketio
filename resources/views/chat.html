@@ -10,7 +10,7 @@
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <ul class="list" id="message-list">
+          <ul class="list-group" id="message-list">
 
           </ul>
           <input id="message" class="control-label" />
@@ -38,9 +38,10 @@
     socket.on('chat_message', (data) => {
 
       let message_list = document.querySelector("#message-list")
-      let list_item = document.createElement('li')
-      list_item.textContent = data
-      message_list.append(list_item)
+      let list_item = `
+        <li class="list-group-item">${data}</li>
+      `
+      message_list.innerHTML +=list_item
     })
 
   </script>
